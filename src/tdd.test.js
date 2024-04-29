@@ -6,28 +6,27 @@ const jsdom = new JSDOM('<!DOCTYPE html><html><body><ul id="proyectos-lista"></u
 global.document = jsdom.window.document;
 
 describe("agregarProyecto", () => {
+  let listaProyectos;
+
   beforeEach(() => {
-    document.getElementById('proyectos-lista').innerHTML = '';
+    // Limpiamos el contenido de la lista de proyectos antes de cada prueba
+    listaProyectos = document.getElementById('proyectos-lista');
+    listaProyectos.innerHTML = '';
   });
 
   it("debería agregar un proyecto a la lista de proyectos", () => {
-
-    const listaProyectos = document.getElementById('proyectos-lista');
-
-   
+    // Llamamos a la función agregarProyecto con un nuevo proyecto
     agregarProyecto("Proyecto 1", "Descripción del proyecto 1", listaProyectos);
 
-    
+    // Verificamos que se haya agregado un nuevo proyecto a la lista
     expect(listaProyectos.children.length).toEqual(1);
 
+    // Verificamos que el contenido del nuevo proyecto sea el esperado
     expect(listaProyectos.children[0].textContent).toEqual("Proyecto 1: Descripción del proyecto 1");
   });
 
   it("debería agregar otro proyecto a la lista de proyectos", () => {
-
-    const listaProyectos = document.getElementById('proyectos-lista');
-
-
+    // Llamamos a la función agregarProyecto con otro nuevo proyecto
     agregarProyecto("Proyecto 2", "Descripción del proyecto 2", listaProyectos);
 
     // Verificamos que se haya agregado un nuevo proyecto a la lista
