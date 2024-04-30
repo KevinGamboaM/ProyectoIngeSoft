@@ -12,6 +12,13 @@ export function agregarProyecto(nombre, descripcion, listaProyectos) {
   const descripcionProyecto = document.createElement('p');
   descripcionProyecto.textContent = descripcion;
 
+  // Crear el botón de eliminar
+  const botonEliminar = document.createElement('button');
+  botonEliminar.textContent = 'Eliminar';
+  botonEliminar.classList.add('eliminar');
+  botonEliminar.addEventListener('click', () => {
+    eliminarProyecto(contenedorProyecto, listaProyectos);
+  });
 
   // Agregar elementos al contenedor del proyecto (caja)
   contenedorProyecto.appendChild(tituloProyecto);
@@ -19,4 +26,7 @@ export function agregarProyecto(nombre, descripcion, listaProyectos) {
 
   // Agregar el contenedor del proyecto a la lista de proyectos
   listaProyectos.appendChild(contenedorProyecto);
+}
+export function eliminarProyecto(proyecto, listaProyectos) {
+  listaProyectos.removeChild(proyecto);
 }
