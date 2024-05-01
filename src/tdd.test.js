@@ -1,4 +1,4 @@
-import { agregarProyecto } from "./tdd";
+import { agregarProyecto,eliminarProyecto } from "./tdd";
 
 // Mock del DOM utilizando JSDOM
 const { JSDOM } = require('jsdom');
@@ -35,5 +35,17 @@ describe("agregarProyecto", () => {
 
     // Verificamos que el contenido del nuevo proyecto sea el esperado
     expect(Producto).toEqual("Proyecto 2: Descripción del proyecto 2");
+  });
+  it("eliminarProyecto debería eliminar el proyecto de la lista de proyectos", () => {
+    // Creamos un proyecto simulado
+    const proyectoSimulado = document.createElement('li');
+    proyectoSimulado.textContent = "Proyecto de prueba";
+    listaProyectos.appendChild(proyectoSimulado);
+
+    // Llamamos a la función eliminarProyecto para eliminar el proyecto simulado
+    eliminarProyecto(proyectoSimulado, listaProyectos);
+
+    // Verificamos que el proyecto se haya eliminado correctamente de la lista
+    expect(listaProyectos.children.length).toEqual(0);
   });
 });
